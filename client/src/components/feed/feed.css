@@ -1,0 +1,9 @@
+.feedWrapper{
+    padding: 20px;
+    height: 100%;
+    border: 5px solid rgba(0, 0, 0, 0.149);
+    border-radius: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    overflow-y: scroll;
+}

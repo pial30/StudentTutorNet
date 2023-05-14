@@ -10,6 +10,8 @@ import path from "path";
 import { v2 as cloudinary } from 'cloudinary';
 import { CloudinaryStorage } from 'multer-storage-cloudinary';
 import { fileURLToPath } from "url";
+import imagemin from 'imagemin';
+import imageminMozjpeg from 'imagemin-mozjpeg';
 import authRoutes from "./routes/auth.js";
 import userRoutes from "./routes/users.js";
 import postRoutes from "./routes/posts.js";
@@ -41,12 +43,25 @@ cloudinary.config({
   api_key: process.env.api_key,
   api_secret: process.env.api_secret
 });
+const compressImage = async (buffer) => {
+  const compressedImage = await imagemin.buffer(buffer, {
+    plugins: [
+      imageminMozjpeg({ quality: 1 })
+    ]
+  });
+  return compressedImage;
+};
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
     folder: 'YOUR_FOLDER_NAME',
     public_id: (req, file) => 'unique_name_for_image',
-  }
+  },
+  // Set the transformer option to compress the uploaded image
+  // transformer: async (req, file) => {
+  //   const compressedImage = await compressImage(file.buffer);
+  //   return { buffer: compressedImage };
+  // }
 });
 /*
 const storage = multer.diskStorage({

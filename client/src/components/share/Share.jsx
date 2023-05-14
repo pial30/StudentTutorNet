@@ -88,7 +88,7 @@ const Share = ({userId}) => {
                 ></textarea>
                 <>
                       <Dropzone
-                      acceptedFiles=".png,.jpg,.jpeg"
+                      // acceptedFiles=".png,.jpg,.jpeg"
                       multiple={false}
                       onDrop={(acceptedFiles) =>
                         setFieldValue("picture", acceptedFiles[0])

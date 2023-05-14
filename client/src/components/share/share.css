@@ -38,9 +38,9 @@
     height: 250px;
     border: none;
    overflow-y: scroll;
-   word-break: break-all;
     border: 1px solid rgba(0, 0, 0, 0.89);
     border-radius: 10px;
+    white-space: pre-wrap;
 }
 .shareInputPlaceholderTop {
     text-align:start;

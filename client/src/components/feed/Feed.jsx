@@ -51,8 +51,9 @@ const Feed = ({ userId, isProfile = false, Id }) => {
     } else {
       getPosts();
     }
-  }, [userId,Id]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [userId,Id,posts.length]); // eslint-disable-line react-hooks/exhaustive-deps
   const postsnew=[...posts].reverse();
+  console.log(postsnew);
     return (
       <>
       {posts.length>0 && (

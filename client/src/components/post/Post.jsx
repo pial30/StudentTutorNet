@@ -5,7 +5,7 @@ import "./post.css"
 import { Formik } from "formik";
 import * as yup from "yup";
 import { Box, Divider, IconButton, Typography, useTheme } from "@mui/material";
-import { setPost } from "../../state";
+import { setPost, setPosts } from "../../state";
 import { useNavigate } from "react-router-dom";
 
 const loginSchema = yup.object().shape({
@@ -45,6 +45,20 @@ const Post = ({
         });
         const updatedPost = await response.json();
         dispatch(setPost({ post: updatedPost }));
+      };
+
+      const postdelete = async () => {
+        const response = await fetch(`http://localhost:3001/posts/${postId}/delete`, {
+          method: "PATCH",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ userId: loggedInUserId }),
+        });
+        const updatedPost = await response.json();
+        console.log(updatedPost);
+        dispatch(setPosts({ post: updatedPost }));
       };
 
 
@@ -89,7 +103,7 @@ const Post = ({
             </span>
           </div>
           <div className="postTopRight">
-            <MoreVertIcon />
+           {id==postUserId && (<span onClick={postdelete}>Delete</span>)}
           </div>
         </div>
         <div className="postCenter">

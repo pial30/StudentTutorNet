@@ -58,7 +58,18 @@ export const getPost = async (req, res) => {
   }
 };
 
+
 /* UPDATE */
+export const deletePost = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const post = await Post.findByIdAndDelete(id);
+    const posts=await Post.find();
+    res.status(200).json(posts);
+  } catch (err) {
+    res.status(409).json({ message: err.message });
+  }
+};
 export const likePost = async (req, res) => {
   try {
     const { id } = req.params;

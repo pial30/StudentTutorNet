@@ -12,8 +12,8 @@
 }
 .homeRightTop{
     flex: 3;
-    height: 50vw;
-    border: 5px solid rgba(0, 0, 0, 0.149);
+    height: max-content;
+    /* border: 5px solid rgba(0, 0, 0, 0.149); */
    border-radius: 10px;
    margin-right: 10px;
    margin-top: 10px;

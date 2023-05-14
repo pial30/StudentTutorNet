@@ -46,7 +46,7 @@ cloudinary.config({
 const compressImage = async (buffer) => {
   const compressedImage = await imagemin.buffer(buffer, {
     plugins: [
-      imageminMozjpeg({ quality: 1 })
+      imageminMozjpeg({ quality: 50 })
     ]
   });
   return compressedImage;
@@ -55,13 +55,13 @@ const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
     folder: 'YOUR_FOLDER_NAME',
-    public_id: (req, file) => 'unique_name_for_image',
+    public_id: (req, file) => `${file.originalname}`,
   },
   // Set the transformer option to compress the uploaded image
-  // transformer: async (req, file) => {
-  //   const compressedImage = await compressImage(file.buffer);
-  //   return { buffer: compressedImage };
-  // }
+  transformer: async (req, file) => {
+    const compressedImage = await compressImage(file.buffer);
+    return { buffer: compressedImage };
+  },
 });
 /*
 const storage = multer.diskStorage({

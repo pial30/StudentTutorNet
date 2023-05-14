@@ -4,6 +4,12 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import HomeIcon from '@mui/icons-material/Home';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
+import TimelapseIcon from '@mui/icons-material/Timelapse';
+import SchoolIcon from '@mui/icons-material/School';
+import InfoIcon from '@mui/icons-material/Info';
 const Sidebar = ({userId}) => {
   
     const [user, setUser] = useState(null);
@@ -43,19 +49,19 @@ const Sidebar = ({userId}) => {
       <div className="sidebarWrapper">
         <ul className="sidebarList">
          {(userId==Id || location) && ( <li className="sidebarListItem">
-            <span className="sidebarListItemText">Lives in {location}</span>
+            <span className="sidebarListItemText"><LocationOnIcon /> Lives in {location}</span>
           </li>)}
           {(userId==Id || occupation) && ( <li className="sidebarListItem">
-            <span className="sidebarListItemText">works at {occupation}</span>
+            <span className="sidebarListItemText"><WorkOutlineIcon /> works at {occupation}</span>
           </li>)}
           {(userId==Id || company) && ( <li className="sidebarListItem">
-              <span className="sidebarListItemText">Experience on {company}</span>
+              <span className="sidebarListItemText"><TimelapseIcon /> Experience on {company}</span>
             </li>)}
           {(userId==Id || school) && ( <li className="sidebarListItem">
-            <span className="sidebarListItemText">Studying at {school}</span>
+            <span className="sidebarListItemText"><SchoolIcon /> Studying at {school}</span>
           </li>)}
           {(userId==Id || about) && ( <li className="sidebarListItem">
-            <span className="sidebarListItemText">About me: {about}</span>
+            <span className="sidebarListItemText"><InfoIcon /> About me: {about}</span>
           </li>)}
         </ul>
         {Id==userId &&(<button className="sidebarButton" onClick={() => navigate(`/profile/edit/${Id}`)}>Edit</button>)}

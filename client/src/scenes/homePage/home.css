@@ -4,6 +4,7 @@
 .homeRight{
    display: flex;
    flex-direction: row;
+   height: 100%;
 }
 .profileCover{
     height: 220px;

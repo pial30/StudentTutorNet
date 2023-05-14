@@ -24,7 +24,9 @@
 }
 
 .topbarLeft{
-    flex: 3;
+    flex: 2;
+    display: flex;
+    justify-content: space-around;
 }
 .topbarCenter{
     flex: 5;
@@ -70,8 +72,8 @@
     background-color: red;
     border-radius: 50%;
     position:absolute;
-    top: -5px;
-    right: -5px;
+    top: -1px;
+    right: 2px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -86,10 +88,9 @@
 }
 .popup {
     position: absolute;
-    top: 70px;
-    left: 70%;
-    /* transform: translate(-50%, 0%); */
-    width: 400px;
+    top: 50px;
+    right: 130px;
+    width: auto;
     height: auto;
     max-height: 600px;
     overflow-y: scroll;
@@ -101,10 +102,9 @@
   }
   .searchuser{
     position: absolute;
-    top: 70px;
-    left: 50%;
-    transform: translate(-50%, 0%);
-    width: 400px;
+    top: 50px;
+    left: 430px;
+    width: auto;
     height: auto;
     max-height: 600px;
     overflow-y: scroll;
@@ -121,10 +121,20 @@
     cursor: pointer;
     margin-top: 15px;
     border: 1px solid rgb(0, 6, 9);
-    border-radius: 3%;
     width: 100%;
+    padding: 10px;
 
   }
-
+.common{
+    flex: 1;
+    font-size:35px;
+    cursor: pointer;
+}
+.delete{
+    font-size: 30px;
+    color: red;
+    margin-left: 100px;
+    cursor: pointer;
+}
   
   

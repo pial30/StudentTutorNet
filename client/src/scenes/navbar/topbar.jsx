@@ -1,8 +1,7 @@
 import React from "react";
 import "./topbar.css";
 import SearchIcon from "@mui/icons-material/Search";
-import PersonIcon from "@mui/icons-material/Person";
-import ChatIcon from "@mui/icons-material/Chat";
+import HomeIcon from '@mui/icons-material/Home';
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { useDispatch, useSelector } from "react-redux";
 import { setLogout } from "../../state";
@@ -26,6 +25,14 @@ const Topbar = ({id}) => {
     const data = await response.json();
     setUser(data);
   };
+  const deletenotification = async () => {
+    const response = await fetch(`http://localhost:3001/users/${userId}/notification`, {
+      method: "PATCH",
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    const data = await response.json();
+    setUser(data);
+  };
   const getUsers = async () => {
     const response = await fetch(`http://localhost:3001/users`, {
       method: "GET",
@@ -44,11 +51,12 @@ const Topbar = ({id}) => {
    
     navigate(`/home/${id}`);
   }
-  const {
-   notification
-  } = user;
+ let notification=[];
+ if(user.notification)
+ {
+   notification=user.notification;
+ }
   const notificationNew=[...notification].reverse();
-
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
   };
@@ -62,6 +70,7 @@ const Topbar = ({id}) => {
       <div className="topbarLeft">
         <span className="logo" onClick={() => navigate("/home")}>StudentTutorNet</span>
       </div>
+      <i class="material-icons common" onClick={() => navigate("/home")}>home</i>
       <div className="topbarCenter">
         <div className="searchBar">
           <SearchIcon className="searchIcon" onClick={() => setsearch(!search)} />
@@ -80,17 +89,18 @@ const Topbar = ({id}) => {
       </div>
       <div className="topbarRight">
         <div className="topbarLinks">
-          <span className="topbarLink"onClick={()=>navigate(`/profile/${id}`)}>Profile</span>
+          <span className="topbarLink"onClick={()=>navigate(`/profile/${id}`)}> <i class="material-icons common">person</i></span>
         </div>
         <div className="topbar-Icons">
           <div className="topbarIconItem">
-            <span className="topbarLink" onClick={()=>{setNotifications(!notifications)}}>Notifications</span>
-            <span className="topBarIconBadge">{notification.length}</span>
+            <span className="topbarLink" onClick={()=>{setNotifications(!notifications)}}> <i class="material-icons common">notifications</i></span>
+            {notification.length>0 && (<span className="topBarIconBadge">{notification.length}</span>)}
           </div>
         </div>
-        {notifications && (
+        {notifications && notification.length>0 && (
      
             <div className="popup">
+              <i class="material-icons delete" onClick={()=>{deletenotification();setNotifications(!notifications);}}>delete</i>
               {
                 notificationNew.map((element, i)=>(
                   <div key={i} className="notificationElement" onClick={()=>{handleclick(element.id)}}>{element.msg}</div>
@@ -100,7 +110,7 @@ const Topbar = ({id}) => {
             )
             }
         <div className="topbarLinks">
-          <span className="topbarLink" onClick={() => dispatch(setLogout())}>LogOut</span>
+          <span className="topbarLink" onClick={() => dispatch(setLogout())}><i class="material-icons common">logout</i></span>
         </div>
       </div>
     </div>

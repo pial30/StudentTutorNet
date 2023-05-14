@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { AccountCircle } from "@mui/icons-material";
 import "./post.css"
 import { Formik } from "formik";
 import * as yup from "yup";
-import { Box, Divider, IconButton, Typography, useTheme } from "@mui/material";
+import { Box, Divider, IconButton, Typography, useTheme} from "@mui/material";
+import DeleteIcon from '@mui/icons-material//Delete';
+import CommentIcon from '@mui/icons-material/Comment';
 import { setPost, setPosts } from "../../state";
 import { useNavigate } from "react-router-dom";
 
@@ -99,17 +101,16 @@ const Post = ({
         <div className="postTop">
           <div className="postTopLeft">
             <span className="postUsername" onClick={()=>navigate(`/profile/${id}/${postUserId}`)}>
-              {name}
+            <AccountCircle /> {name}
             </span>
           </div>
           <div className="postTopRight">
-           {id==postUserId && (<span onClick={postdelete}>Delete</span>)}
+           {id==postUserId && (<span onClick={postdelete}><DeleteIcon style={{ color: 'red', cursor:"pointer" }} /></span>)}
           </div>
         </div>
         <div className="postCenter">
           {picturePath && (<img className="postpic" src={picturePath} alt=""/>)}
           <span className="postText">{description}</span>
-          {/*? is for making sure if there is no description it would not give error */}
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">
@@ -117,7 +118,7 @@ const Post = ({
             <span className="postLikeCounter" onClick={()=> setIslike(!isLike)}>{likes.length} people react it</span>
           </div>
           <div className="postBottomRight">
-            <div className="postCommentText" onClick={() => setIsComments(!isComments)}> {comments.length} comments</div>
+            <div className="postCommentText" onClick={() => setIsComments(!isComments)}><CommentIcon /> {comments.length} comments</div>
           </div>
         </div>
         {isLike && (

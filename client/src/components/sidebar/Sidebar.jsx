@@ -46,7 +46,7 @@ const Sidebar = ({userId}) => {
             <span className="sidebarListItemText">Lives in {location}</span>
           </li>)}
           {(userId==Id || occupation) && ( <li className="sidebarListItem">
-            <span className="sidebarListItemText">working at {occupation}</span>
+            <span className="sidebarListItemText">works at {occupation}</span>
           </li>)}
           {(userId==Id || company) && ( <li className="sidebarListItem">
               <span className="sidebarListItemText">Experience on {company}</span>

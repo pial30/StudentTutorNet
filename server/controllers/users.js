@@ -110,3 +110,16 @@ export const updateInfo = async (req, res) => {
    res.status(409).json({ message: err.message });
   }
 };
+
+export const deleteNotifications = async (req, res) => {
+  try {
+   const {id} = req.params;
+   const user = await User.findById(id);
+   user.notification=[];
+   const updated=await user.save();
+   const updateduser = await User.findById(id);
+   res.status(200).json(updateduser);
+  } catch (err) {
+   res.status(409).json({ message: err.message });
+  }
+};

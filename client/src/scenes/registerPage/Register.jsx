@@ -40,16 +40,19 @@ export default function Register()
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const register = async (values, onSubmitProps) => {
-        // this allows us to send form info with image
         const formData = new FormData();
         for (let value in values) {
           formData.append(value, values[value]);
         }
+        const searchParams = new URLSearchParams(formData);
         const savedUserResponse = await fetch(
           `${process.env.REACT_APP_API_URL}/auth/register`,
           {
-            method: "POST",
-            body: formData,
+            method: "POST", 
+            headers: {
+            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+            },
+            body:searchParams.toString(),
           }
         );
         const savedUser = await savedUserResponse.json();

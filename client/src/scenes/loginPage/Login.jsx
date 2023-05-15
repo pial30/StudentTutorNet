@@ -1,21 +1,9 @@
 import "./login.css";
-import { useState } from "react";
-import {
-  Box,
-  Button,
-  TextField,
-  useMediaQuery,
-  Typography,
-  useTheme,
-} from "@mui/material";
-import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import { Formik } from "formik";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setLogin } from "../../state";
-import { useSelector } from "react-redux";
-import Dropzone from "react-dropzone";
 
 const loginSchema = yup.object().shape({
     email: yup.string().email("invalid email").required("required"),
@@ -38,7 +26,7 @@ export default function Login()
         });
         const loggedIn = await loggedInResponse.json();
         onSubmitProps.resetForm();
-        if (loggedIn) {
+        if (loggedIn.user) {
           const name=loggedIn.user.firstName+" "+loggedIn.user.lastName;
           dispatch(
             setLogin({
@@ -51,6 +39,9 @@ export default function Login()
           const id=loggedIn.user._id;
           const path = `/profile/${id}`;
           navigate(path);
+        }
+        else{
+          alert("Wrong email or password");
         }
       };
     const handleFormSubmit = async (values, onSubmitProps) => {

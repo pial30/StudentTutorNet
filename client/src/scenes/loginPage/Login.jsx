@@ -28,7 +28,6 @@ const loginSchema = yup.object().shape({
   };
 export default function Login()
 {
-  alert(process.env.REACT_APP_API_URL);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const login = async (values, onSubmitProps) => {

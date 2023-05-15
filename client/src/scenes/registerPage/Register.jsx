@@ -46,7 +46,7 @@ export default function Register()
           formData.append(value, values[value]);
         }
         const savedUserResponse = await fetch(
-          "http://localhost:3001/auth/register",
+          `${process.env.REACT_APP_API_URL}/auth/register`,
           {
             method: "POST",
             body: formData,

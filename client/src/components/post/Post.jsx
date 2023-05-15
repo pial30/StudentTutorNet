@@ -37,7 +37,7 @@ const Post = ({
     const navigate = useNavigate();
   console.log(Array.isArray(likes))
     const patchLike = async () => {
-        const response = await fetch(`http://localhost:3001/posts/${postId}/like`, {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/posts/${postId}/like`, {
           method: "PATCH",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -50,7 +50,7 @@ const Post = ({
       };
 
       const postdelete = async () => {
-        const response = await fetch(`http://localhost:3001/posts/${postId}/delete`, {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/posts/${postId}/delete`, {
           method: "PATCH",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -79,7 +79,7 @@ const Post = ({
         }
         const searchParams = new URLSearchParams(formData);
       
-        const response = await fetch(`http://localhost:3001/posts/${postId}/comment`, {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/posts/${postId}/comment`, {
           method: "PATCH",
            headers: {
               Authorization: `Bearer ${token}`,

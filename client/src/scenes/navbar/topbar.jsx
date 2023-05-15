@@ -18,7 +18,7 @@ const Topbar = ({id}) => {
   const [searchTerm, setSearchTerm] = useState("");
   const token = useSelector((state) => state.token);
   const getUser = async () => {
-    const response = await fetch(`http://localhost:3001/users/${userId}`, {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/users/${userId}`, {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -26,7 +26,7 @@ const Topbar = ({id}) => {
     setUser(data);
   };
   const deletenotification = async () => {
-    const response = await fetch(`http://localhost:3001/users/${userId}/notification`, {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/users/${userId}/notification`, {
       method: "PATCH",
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -34,7 +34,7 @@ const Topbar = ({id}) => {
     setUser(data);
   };
   const getUsers = async () => {
-    const response = await fetch(`http://localhost:3001/users`, {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/users`, {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     });

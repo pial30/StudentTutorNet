@@ -37,7 +37,7 @@ export default function Edit()
     const token = useSelector((state) => state.token);
     const [user, setUser] = useState(null);
     const getUser = async () => {
-      const response = await fetch(`http://localhost:3001/users/${userId}`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/users/${userId}`, {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -76,7 +76,7 @@ export default function Edit()
           console.log(pair[0] + ': ' + pair[1]);
         }
         const savedUserResponse = await fetch(
-          `http://localhost:3001/users/${userId}`,
+          `${process.env.REACT_APP_API_URL}/users/${userId}`,
           {
             method: "PATCH",
             headers: {
@@ -122,9 +122,9 @@ export default function Edit()
             setFieldValue,
             resetForm,
         }) => (
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}  >
 
-                <div className="login">
+                <div className="edit">
                         
                     <div className="regBox">
                       <span className="field">Firstname:
@@ -154,7 +154,7 @@ export default function Edit()
                             className="editInput"
                             />
                       </span>
-                      <span className="picbutton field">Upload picture:
+                      <span className="picbutton">
                       <Dropzone
                       acceptedFiles=".png,.jpg,.jpeg,.png"
                       multiple={false}
@@ -171,9 +171,9 @@ export default function Edit()
                         <input
                          {...getInputProps() } />
                         {!values.picture ? (
-                          <p>Add Picture Here</p>
+                          <p className="up">Upload Profile Picture</p>
                         ) : (
-                          <p>{values.picture.name}</p>
+                          <p className="up">{values.picture.name}</p>
                         )}
                       </Button>
                      
@@ -208,13 +208,13 @@ export default function Edit()
                             />
                       </span>
                       <span className="field">About:
-                        <input
+                      <textarea
                             onBlur={handleBlur}
                             onChange={handleChange}
                             value={values.about}
                             name="about"
-                            className="editInput"
-                            />
+                            className="editText"
+                            ></textarea>
                       </span>
                       <span className="field">Location:
                         <input

@@ -39,7 +39,7 @@ const Share = ({userId}) => {
       }
       const searchParams = new URLSearchParams(formData);
     
-      const response = await fetch("http://localhost:3001/posts", {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/posts`, {
         method: "post",
         headers: {
           Authorization: `Bearer ${token}`,

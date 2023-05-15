@@ -17,7 +17,7 @@ const Profileshow=()=>{
   console.log(posts);
 
   const getUser = async () => {
-    const response = await fetch(`http://localhost:3001/users/${Id}`, {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/users/${Id}`, {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     });

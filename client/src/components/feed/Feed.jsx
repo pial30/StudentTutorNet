@@ -11,7 +11,7 @@ const Feed = ({ userId, isProfile = false, Id }) => {
   const token = useSelector((state) => state.token);
 
   const getPosts = async () => {
-    const response = await fetch("http://localhost:3001/posts", {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/posts`, {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -21,7 +21,7 @@ const Feed = ({ userId, isProfile = false, Id }) => {
 
   const getUserPosts = async () => {
     const response = await fetch(
-      `http://localhost:3001/posts/${userId}/posts`,
+      `${process.env.REACT_APP_API_URL}/posts/${userId}/posts`,
       {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },
@@ -32,7 +32,7 @@ const Feed = ({ userId, isProfile = false, Id }) => {
   };
   const getPost = async () => {
     const response = await fetch(
-      `http://localhost:3001/posts/${Id}/post`,
+      `${process.env.REACT_APP_API_URL}/posts/${Id}/post`,
       {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },

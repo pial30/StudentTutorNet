@@ -20,7 +20,7 @@ Technologies Used:
 
 Usage:
 - Visit the website at: https://studenttutornet.netlify.app/
-- Register as a student or teacher by providing the required information.
+- Register by providing the required information.
 - Log in using your credentials.
 - Complete your profile by uploading a profile picture and other information.
 - Start sharing posts or searching for users using the search bar.
